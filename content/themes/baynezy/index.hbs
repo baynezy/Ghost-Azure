@@ -1,0 +1,23 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+
+<div class="row">
+	<section class="col-xs-12 col-sm-6" id="left_tile">
+		<h1>I am a Software Architect</h1>
+    	<p>I specialise in building high performance, scalable, robust applications with high levels of test coverage.</p>
+    	<p>Interested in finding out <a href="/about">more about me</a>?</p>
+    	<p><a href="/contact" class="btn btn-warning btn-lg">Feel free to contact me <i class="icon-envelope-alt"></i></a></p>
+	</section>
+	<section class="hidden-xs col-sm-6" id="right_tile">
+		<div>
+    		<img src="{{asset "images/stock-image-001.jpg"}}" class="img-responsive"/>
+    	</div>
+	</section>
+</div>
+<hr/>
+<div class="row">
+	<section class="col-sm-12">
+		{{! The tag below includes the post loop - partials/loop.hbs }}
+        {{> "loop"}}
+	</section>
+</div>

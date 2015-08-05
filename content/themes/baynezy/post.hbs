@@ -1,0 +1,45 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+{{! Everything inside the #post tags pulls data from the post }}
+{{#post}}
+
+<article id="post">
+    <header id="article_header">
+		<h1><strong>{{title}}</strong></h1>
+	</header>
+    
+    <div class="row">
+        <div class="col-sm-9">
+            {{content}}
+            {{#author}}
+                <small>By {{name}}</small>
+            {{/author}}
+             <div id="disqus_thread"></div>
+            <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES * * */
+                var disqus_shortname = 'simonbaynes';
+                
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </div>
+        
+        <aside class="col-sm-3">
+            <div id="meta_data">
+                <h4>Meta Data</h4>
+                <p>Posted on: <time datetime="{{date format='YYYY-MM-DD HH:mm'}}" pubdate>{{date format='d MMM YYYY HH:mm'}}</time></p>
+                <p>{{tags prefix="Tagged with: "}}</p>
+            </div>
+        </aside>
+    </div>
+</article>
+
+{{/post}}
