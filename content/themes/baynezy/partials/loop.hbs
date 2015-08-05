@@ -1,0 +1,25 @@
+<div id="article_list">
+    {{! This is the post loop - each post will be output using this markup }}
+    {{#foreach posts}}
+        <article class="row{{#if @odd}} alt{{/if}}">
+            <time datetime="{{date format='YYYY-MM-DD  HH:mm'}}" pubdate class="hidden-xs col-sm-3">
+                <span>{{date format='DD'}}</span>
+                {{date format='MMMM YYYY'}}
+            </time>
+            <section class="col-sm-6">
+                <h1><a href="{{url}}">{{{title}}}</a></h1>
+                <p>{{excerpt words="25"}}</p>
+            </section>
+            <aside class="col-sm-3">
+                Tagged with:
+                <ul>
+                    {{#foreach tags}}
+                        <li><a href="{{url}}" title="{{name}}">{{name}}</a></li>
+                    {{/foreach}}
+                </ul>
+            </aside>
+        </article>
+    {{/foreach}}
+    
+    {{pagination}}
+</div>
