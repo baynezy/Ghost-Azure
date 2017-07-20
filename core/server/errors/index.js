@@ -13,6 +13,7 @@ var _                          = require('lodash'),
     RequestEntityTooLargeError = require('./request-too-large-error'),
     UnauthorizedError          = require('./unauthorized-error'),
     ValidationError            = require('./validation-error'),
+    ThemeValidationError       = require('./theme-validation-error'),
     UnsupportedMediaTypeError  = require('./unsupported-media-type-error'),
     EmailError                 = require('./email-error'),
     DataImportError            = require('./data-import-error'),
@@ -244,7 +245,17 @@ errors = {
 
             errorContent.message = _.isString(errorItem) ? errorItem :
                 (_.isObject(errorItem) ? errorItem.message : i18n.t('errors.errors.unknownApiError'));
+
             errorContent.errorType = errorItem.errorType || 'InternalServerError';
+
+            if (errorItem.code) {
+                errorContent.code = errorItem.code;
+            }
+
+            if (errorItem.errorType === 'ThemeValidationError' && errorItem.errorDetails) {
+                errorContent.errorDetails = errorItem.errorDetails;
+            }
+
             errors.push(errorContent);
         });
 
@@ -447,6 +458,7 @@ module.exports.InternalServerError        = InternalServerError;
 module.exports.NoPermissionError          = NoPermissionError;
 module.exports.UnauthorizedError          = UnauthorizedError;
 module.exports.ValidationError            = ValidationError;
+module.exports.ThemeValidationError       = ThemeValidationError;
 module.exports.RequestEntityTooLargeError = RequestEntityTooLargeError;
 module.exports.UnsupportedMediaTypeError  = UnsupportedMediaTypeError;
 module.exports.EmailError                 = EmailError;
